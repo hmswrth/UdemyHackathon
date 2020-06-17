@@ -7,7 +7,7 @@ import org.testng.annotations.*;
 import com.udemy.qa.base.Main;
 import com.udemy.qa.pages.HomePage;
 import com.udemy.qa.pages.SearchResultsPage;
-import com.udemy.qa.utils.TestUtil;
+import com.udemy.qa.utils.ReadFromExcel;
 
 public class HomePageTest extends Main{
 	static HomePage homePage;
@@ -25,7 +25,7 @@ public class HomePageTest extends Main{
 	
 	@DataProvider
 	public Object[][] getSearchDataFromExcel() {
-		return TestUtil.getTestData("Search");
+		return ReadFromExcel.getTestData("Search");
 	}
 	
 	@Test(priority = 1, dataProvider = "getSearchDataFromExcel")

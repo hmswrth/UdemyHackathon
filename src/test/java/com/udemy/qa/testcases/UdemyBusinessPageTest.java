@@ -7,7 +7,7 @@ import org.testng.annotations.*;
 import com.udemy.qa.base.Main;
 import com.udemy.qa.pages.HomePage;
 import com.udemy.qa.pages.UdemyBusinessPage;
-import com.udemy.qa.utils.TestUtil;
+import com.udemy.qa.utils.ReadFromExcel;
 
 public class UdemyBusinessPageTest extends Main{
 	static HomePage homePage;
@@ -26,7 +26,7 @@ public class UdemyBusinessPageTest extends Main{
 	
 	@DataProvider
 	public Object[][] udemyTestData() {
-		return TestUtil.getTestData("UdemyBusiness");
+		return ReadFromExcel.getTestData("UdemyBusiness");
 		
 	}
 	@Test(priority = 1, dataProvider = "udemyTestData")

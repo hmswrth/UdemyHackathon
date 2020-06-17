@@ -7,12 +7,10 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
+import com.udemy.qa.utils.BrowserSetup;
 import com.udemy.qa.utils.EventListener;
-import com.udemy.qa.utils.TestUtil;
 
 public class Main {
 	
@@ -21,6 +19,8 @@ public class Main {
 	public static JavascriptExecutor js;
 	public  static EventFiringWebDriver e_driver;
 	public static EventListener eventListener;
+	public static long PAGE_LOAD_TIMEOUT = 20;
+	public static long IMPLICIT_WAIT = 10;
 	
 	public Main() {
 		try {
@@ -35,17 +35,8 @@ public class Main {
 	}
 	
 	public static void init() {
-		String driversPath = System.getProperty("user.dir")+"/Drivers/";
 		
-		String browserName = prop.getProperty("browser"); // retrieve browser from properties file
-		if (browserName.equalsIgnoreCase("chrome")) { //set chrome driver
-			System.setProperty("webdriver.chrome.driver", driversPath + "chromedriver");
-			driver = new ChromeDriver();
-		}
-		else if(browserName.equalsIgnoreCase("firefox")) { //set firefox driver
-			System.setProperty("webdriver.chrome.driver", driversPath + "geckodriver");
-			driver = new FirefoxDriver();
-		}
+		driver = BrowserSetup.setBrowser();  //sets the browser according to the specified configuration
 		
 		e_driver = new EventFiringWebDriver(driver);
 		// Now create object of EventListenerHandler to register it with EventFiringWebDriver
@@ -56,8 +47,8 @@ public class Main {
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		
-		driver.manage().timeouts().pageLoadTimeout(TestUtil.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
-		driver.manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT, TimeUnit.SECONDS);
 		
 		driver.get(prop.getProperty("url"));
 		

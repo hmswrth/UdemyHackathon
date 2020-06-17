@@ -51,7 +51,7 @@ public class EventListener extends Main implements WebDriverEventListener {
 
 	public void onException(Throwable error, WebDriver driver) {
 		System.out.println("Exception occured: " + error);
-		TestUtil.takeAScreenshot();
+		Screenshot.takeAScreenshot();
 	}
 
 	public void beforeFindBy(By by, WebElement element, WebDriver driver) {

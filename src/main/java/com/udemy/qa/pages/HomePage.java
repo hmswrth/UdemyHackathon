@@ -11,7 +11,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.udemy.qa.base.Main;
-import com.udemy.qa.utils.TestUtil;
 
 public class HomePage extends Main {
 	
@@ -34,14 +33,14 @@ public class HomePage extends Main {
 	
 	public SearchResultsPage search(String testData) {
 		searchBox.sendKeys(testData);
-		driver.manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT, TimeUnit.SECONDS);
 		searchBtn.click();
 		return new SearchResultsPage();
 	}
 	
 	public UdemyBusinessPage udemyForBusiness() {
 		String parentWindowHandle = driver.getWindowHandle();
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, IMPLICIT_WAIT);
 		wait.until(ExpectedConditions.visibilityOf(udemyForBusiness));
 		udemyForBusiness.click();
 		Set<String> allWindowHandles = driver.getWindowHandles();
@@ -51,8 +50,8 @@ public class HomePage extends Main {
 				driver.switchTo().window(handle);
 			}
 		}
-		driver.manage().timeouts().pageLoadTimeout(TestUtil.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
-		driver.manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT, TimeUnit.SECONDS);
 	
 	return new UdemyBusinessPage();
 	}
