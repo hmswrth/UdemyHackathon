@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Udemy Automation Suite">
+	<listeners>
+		<listener
+			class-name="com.udemy.qa.utils.ExtentReportListener" />
+	</listeners>
+	<test name="Udemy Application TestCases">
+		<classes>
+			<class name="com.udemy.qa.testcases.HomePageTest" />
+			<class name="com.udemy.qa.testcases.SearchResultsPageTest" />
+			<class name="com.udemy.qa.testcases.UdemyBusinessPageTest" />
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->
